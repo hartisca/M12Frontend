@@ -2,17 +2,15 @@ import React from 'react'
 import {BsFillPersonFill} from 'react-icons/bs'
 
 
-export const Register = ({setRegister}) => {
-  return (
+export default function Register({}){
+  return(
     <>
-        <div class="input-group flex-nowrap">
-            <span class="input-group-text" id="addon-wrapping"><BsFillPersonFill/></span>
-            <input type="text" class="form-control" placeholder="Nom" aria-label="Username" aria-describedby="addon-wrapping" />
-        </div>
-        <a className ="registerButton"
+      
+      
+      <a className ="registerButton"
         onClick={() => {
             setRegister(true);
-        }}> Already registered? </a>     
+        }}> Already registered? </a> 
     </>
   )
 }
