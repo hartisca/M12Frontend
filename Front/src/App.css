@@ -16,3 +16,7 @@
 .btnlogin {
   opacity: 0,5;
 }
+
+.regis:hover{
+  cursor: pointer;
+}
