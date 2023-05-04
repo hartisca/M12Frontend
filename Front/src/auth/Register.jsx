@@ -44,10 +44,12 @@ export default function Register({setRegister}){
       });
       const resposta = await fetch.json();
       if (resposta.success === true ){
-        dispatch(setToken(resposta.token))
+        dispatch(setToken(resposta.authToken))
       }
+    } catch{
+      console.log("Register buit")
     }
-  }
+  } 
 
   
   return(
