@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import {FaRegEye, FaRegEyeSlash} from 'react-icons/fa';
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux'
-import { setToken } from './authSlice'
+import { setToken } from '../Slices/authSlice'
 
 import {
   MDBBtn,
