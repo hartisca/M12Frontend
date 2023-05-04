@@ -34,7 +34,7 @@ export default function Register({setRegister}){
     const {name, password, email} = data
 
     try{
-      const fetch = await fetch ('http://127.0.0.1:8000/api/register', {
+      const fetchResponse = await fetch ('http://127.0.0.1:8000/api/register', {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json"
@@ -42,12 +42,12 @@ export default function Register({setRegister}){
         method: "POST",
         body: JSON.stringify({name, email, password})
       });
-      const resposta = await fetch.json();
+      const resposta = await fetchResponse.json();
       if (resposta.success === true ){
         dispatch(setToken(resposta.authToken))
       }
     } catch{
-      console.log("Register buit")
+      console.log('Error en el registro:', errors);
     }
   } 
 
