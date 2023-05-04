@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
 import {FaRegEye, FaRegEyeSlash} from 'react-icons/fa';
 import { useForm } from "react-hook-form";
+import { useDispatch } from 'react-redux'
+import { setToken } from './authSlice'
 
 import {
   MDBBtn,
@@ -24,7 +26,28 @@ export default function Register({setRegister}){
 
   //useForm per gestió de formulari
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => handleRegister(data);
+  
+  const dispatch = useDispatch();
+
+  const handleRegister = async (data) => {
+    const {name, password, email} = data
+
+    try{
+      const fetch = await fetch ('http://127.0.0.1:8000/api/register', {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        method: "POST",
+        body: JSON.stringify({name, email, password})
+      });
+      const resposta = await fetch.json();
+      if (resposta.success === true ){
+        dispatch(setToken(resposta.token))
+      }
+    }
+  }
 
   
   return(
