@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const Partida = () => {
+    
   return (
     <>
         <h2 className='titolPartida'>Fites Aconseguides</h2>

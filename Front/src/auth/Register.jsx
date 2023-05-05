@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux'
 import { setToken } from '../Slices/authSlice'
 
+import {useForm} from '../hooks/useForm';
+import {doRegister} from '../hooks/doRegister'
+
 import {
   MDBBtn,
   MDBContainer,
@@ -24,14 +27,17 @@ export default function Register({setRegister}){
     setShowPassword(!showPassword);
   };
 
-  //useForm per gestió de formulari
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => handleRegister(data);
+  const {formState, onInputChange} = useForm({
+    name:"",
+    email:"",
+    password:"",
+  });
+  const {name, email, password} = formState
   
   const dispatch = useDispatch();
 
   const handleRegister = async (data) => {
-    const {name, password, email} = data
+    const {name, email, password} = data
 
     try{
       const fetchResponse = await fetch ('http://127.0.0.1:8000/api/register', {
@@ -50,7 +56,6 @@ export default function Register({setRegister}){
       console.log('Error en el registro:', errors);
     }
   } 
-
   
   return(
     <>
@@ -72,7 +77,7 @@ export default function Register({setRegister}){
                 </button>
 
                 
-                <button  className='btnlogin mx-2 mb-5 mt-5 px-5' onClick={handleSubmit(onSubmit)} color='white' size='lg'>
+                <button  className='btnlogin mx-2 mb-5 mt-5 px-5' onClick={doRegister(formState)} color='white' size='lg'>
                 Registrat
                 </button>
 
