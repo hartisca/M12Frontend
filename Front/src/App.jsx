@@ -12,14 +12,12 @@ import { UserContext } from "./UserContext";
 function App() {
   let [authToken, setAuthToken] = useState("");
   let [usuari, setUsuari] = useState("");
-  let [idUser, setIdUser] = useState("");
-
-  
+  let [idUser, setIdUser] = useState("");  
 
   return (
     <>
     <UserContext.Provider value= { { usuari, setUsuari,authToken,setAuthToken,idUser, setIdUser }}>
-      {authToken ? (<LoginRegister />) : (<>Va el token</>)}
+      {authToken ? (<LoginRegister />) : (<>Tokennn</>)}
       
     </UserContext.Provider>
     </>
