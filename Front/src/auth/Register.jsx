@@ -1,11 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import {FaRegEye, FaRegEyeSlash} from 'react-icons/fa';
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux'
 import { setToken } from '../Slices/authSlice'
 
-import {useForm} from '../hooks/useForm';
-import {doRegister} from '../hooks/doRegister'
 
 import {
   MDBBtn,
@@ -25,16 +23,11 @@ export default function Register({setRegister}){
   const [showPassword, setShowPassword] = useState(false);
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
-  };
-
-  const {formState, onInputChange} = useForm({
-    name:"",
-    email:"",
-    password:"",
-  });
-  const {name, email, password} = formState
+  }; 
   
   const dispatch = useDispatch();
+  //react-hook-forms
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const handleRegister = async (data) => {
     const {name, email, password} = data
@@ -51,6 +44,7 @@ export default function Register({setRegister}){
       const resposta = await fetchResponse.json();
       if (resposta.success === true ){
         dispatch(setToken(resposta.authToken))
+        console.log(resposta)
       }
     } catch{
       console.log('Error en el registro:', errors);
@@ -69,16 +63,20 @@ export default function Register({setRegister}){
                 <h2 className="fw-bold mb-2 text-uppercase">Register</h2>
                 <p className="text-white-50 mb-5">Entra les teves dades!</p>
 
-                <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' placeholder='Nom' type='text' {...register("name")} size="lg"/>
-                <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' placeholder='Email' type='email' {...register("email")} size="lg"/>
-                <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' placeholder='Contrassenya' type={showPassword ? 'text' : 'password'} {...register("password")} size="lg"/>                
+                <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' placeholder='Nom' type='text' {...register("name", { required: true })} size="lg" name="name" />
+                {errors.name && <span>This field is required</span>}
+                <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' placeholder='Email' type='email' {...register("email", { required: true })} size="lg" name="email" />
+                {errors.email && <span>This field is required</span>}
+                <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' placeholder='Contrasenya' type={showPassword ? 'text' : 'password'} {...register("password", { required: true })} size="lg" name="password" />
+                {errors.email && <span>This field is required</span>}
+                                
                 <button type="button" onClick={handlePasswordToggle} className="btn-toggle-password">
                   {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
                 </button>
 
                 
-                <button  className='btnlogin mx-2 mb-5 mt-5 px-5' onClick={doRegister(formState)} color='white' size='lg'>
-                Registrat
+                <button className='btnlogin mx-2 mb-5 mt-5 px-5' onClick={handleSubmit(handleRegister)} color='white' size='lg'>
+                  Registrat
                 </button>
 
                 <div>

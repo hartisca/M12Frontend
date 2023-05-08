@@ -3,7 +3,11 @@ import { createSlice } from '@reduxjs/toolkit'
 export const authSlice = createSlice({
     name: 'authslice',
     initialState: { 
-        token: null
+        token: null,
+        usuari: {
+            file: { filepath: ""},
+            email: "",
+        }
     }, 
     reducers: {
         setToken: (state, action) => {
@@ -12,10 +16,13 @@ export const authSlice = createSlice({
         clearToken: (state) => {
             state.token = null
         },
+        setUsuari: (state, action) => {
+            state.usuari.email = action.payload
+        }
     }, 
 })
 
 // Action creators are generated for each case reducer function
-export const { setToken, clearToken } = authSlice.actions
+export const { setToken, clearToken, setUsuari } = authSlice.actions
 
 export default authSlice.reducer

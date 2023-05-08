@@ -5,14 +5,23 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { LoginRegister } from './auth/LoginRegister';
 
+import { UserContext } from "./UserContext";
+
 
 
 function App() {
+  let [authToken, setAuthToken] = useState("");
+  let [usuari, setUsuari] = useState("");
+  let [idUser, setIdUser] = useState("");
+
   
 
   return (
     <>
-      <LoginRegister />
+    <UserContext.Provider value= { { usuari, setUsuari,authToken,setAuthToken,idUser, setIdUser }}>
+      {authToken ? (<LoginRegister />) : (<>Va el token</>)}
+      
+    </UserContext.Provider>
     </>
   )
 }
