@@ -6,9 +6,11 @@ import PartidaList from './PartidaList';
 import { getPartides } from '../../Slices/Partides/thunks';
 
 
+
 export default  function PartidasList() {
 
-    let authToken = useSelector((state) => state.token) 
+  let { authToken, setAuthToken,usuari, setUsuari } = useContext(UserContext);
+    
     const { partides = []} = useSelector((state) => state.partida);
     const dispatch = useDispatch();
 
@@ -28,12 +30,12 @@ export default  function PartidasList() {
                     { partides.length > 0 ? (
                       partides.map((partida) => (
                         <tr key={partida.id}>
-                            <PartidaList partida={partida}/>
+                            <PartidaList partida={partida} />
                         </tr>
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="3">No se encontraron partidas</td>
+                        <td colSpan="3">Carregant partides...</td>
                       </tr>
                     )}
                 </tbody>

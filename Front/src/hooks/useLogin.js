@@ -6,24 +6,26 @@ import { UserContext } from '../UserContext'
 
 const useLogin = () => {
 
-    let {authToken,setAuthToken,usuari, setUsuari,idUser, setIdUser} = useContext(UserContext)
-    const [error, setError] = useState();
+  let {usuari, setUsuari, email, setUserEmail, authToken, setAuthToken} = useContext(UserContext);
+  const [error, setError] = useState();
 
     /*
     const token = useSelector((state) => state.token)
 
     const dispatch = useDispatch();*/
 
-    let myToken =localStorage.getItem("authToken") || ""
+    
 
     const checkAuthToken = async () => {
+
+      let myToken =localStorage.getItem("authToken") || ""
         
         if(myToken.length > 0){
           const data = await fetch("http://127.0.0.1:8000/api/user", {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
-              'Authorization': 'Bearer '  + token,
+              'Authorization': 'Bearer '  + myToken,
             },
             method: "GET",
           });
@@ -33,9 +35,9 @@ const useLogin = () => {
           if (resposta.success === true) {
             /*dispatch(setToken(token));
             dispatch(setUsuari(email));  */
-            setAuthToken(myToken);
-            setUsuari(resposta.user.email)
-            setIdUser(resposta.user.id)                      
+            setAuthToken(myToken);           
+            setUserEmail(resposta.email);
+            setUsuari(resposta.usuari);                     
           }
         }
         else{
@@ -63,10 +65,11 @@ const useLogin = () => {
             /*
             dispatch(setToken(resposta.authToken))
             console.log("try") */
-            setAuthToken(resposta.authToken);
-            setUsuari(email)
-            localStorage.setItem("authToken",resposta.authToken)  
-            console.log(resposta)                  
+            setAuthToken(resposta.authToken)
+            localStorage.setItem("authToken",resposta.authToken);
+            setUser(resposta.usuari);
+            setUserEmail(resposta.email);
+            console.log(resposta.authToken, usuari);            
           }else {
             setError(resposta.message)
           }

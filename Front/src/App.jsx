@@ -3,21 +3,24 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { LoginRegister } from './auth/LoginRegister';
 
 import { UserContext } from "./UserContext";
+import { LoginRegister } from './auth/LoginRegister';
+import PartidasList from './components/Partides/PartidasList'
 
 
 
 function App() {
-  let [authToken, setAuthToken] = useState("");
-  let [usuari, setUsuari] = useState("");
-  let [idUser, setIdUser] = useState("");  
+  let [ authToken, setAuthToken ] = useState("");
+  let [ usuari, setUsuari ] = useState("");
+  let [ email, setUserEmail ] = useState(""); 
+
+  
 
   return (
     <>
-    <UserContext.Provider value= { { usuari, setUsuari,authToken,setAuthToken,idUser, setIdUser }}>
-      {authToken ? (<LoginRegister />) : (<>Tokennn</>)}
+    <UserContext.Provider value= { { usuari, setUsuari,authToken,setAuthToken, email, setUserEmail }}>
+      {authToken ? (<PartidasList />) : (<LoginRegister />)}
       
     </UserContext.Provider>
     </>

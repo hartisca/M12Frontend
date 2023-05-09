@@ -14,9 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
   <Provider store={store}>
     <BrowserRouter>
-      {/*<App />
-      <Menu />*/}
-      <PartidasList />
+      <App />
+     {/* <Menu />*/}
+      
     </BrowserRouter>
   </Provider>
 
