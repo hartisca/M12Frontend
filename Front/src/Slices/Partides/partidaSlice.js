@@ -22,11 +22,15 @@ export const partidaSlice = createSlice({
     },
     startLoadingPartides: (state) => {
         state.isLoading = true;
+    },
+    setPartida: (state, action) => {
+        state.partida = action.payload;
+        state.isLoading = false;
     }
  }
 })
 
 // Action creators are generated for each case reducer function
-export const { setPartides, startLoadingPartides, errors, missatge } = partidaSlice.actions
+export const { setPartides, setPartida, startLoadingPartides, errors, missatge } = partidaSlice.actions
 
 export const partidaReducer = partidaSlice.reducer

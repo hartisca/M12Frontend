@@ -2,35 +2,34 @@ import React, { useContext } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { UserContext } from '../../UserContext';
+import { getPartida } from '../../Slices/Partides/thunks';
+import { useNavigate } from 'react-router-dom';
 
 
 const PartidaList = ({partida}) => {
     
-    let {authToken,setAuthToken,usuari, setUsuari} = useContext(UserContext)
-    console.log(authToken)
+    let {authToken,setAuthToken,usuari, setUsuari} = useContext(UserContext)    
     const dispatch = useDispatch();
+    const navigate = useNavigate(); 
+    
+    let id = partida.id
 
-    function unirsePartida() {
-        // Aquí iría la lógica para unirse a la partida
-        // ...
+    function unirsePartida() {        
+        dispatch(getPartida(authToken, id ))
+        navigate('/partidas/:id')
     }
     
+   
 
     return(
         <>
             <td>{partida.nom}</td>
             <td>{partida.puntsVictoria}</td>
-            <td>{partida.duracio}</td>
-            { authToken && (
-                <td>
-                    <button onClick={unirsePartida}>Apuntarme</button>
-                </td>
-            )}
-            { !authToken && (
-                <td>
-                    <span>Inicia sesión para apuntarte a esta partida</span>
-                </td>
-            )}
+            <td>{partida.duracio}</td>           
+            <td>
+                <button className={authToken ? "button-auth" : "button-noauth"} onClick={unirsePartida} disabled={!authToken}>Apuntarme</button>
+            </td>
+        
         </>
         
     )

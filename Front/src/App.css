@@ -45,3 +45,27 @@
   
 }
 
+.button-noauth{
+  background-color: #888;
+}
+
+.button-auth:hover{
+  cursor: pointer;
+  background-color: rgb(184, 212, 203);
+}
+
+.backButton{  
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  position: fixed;
+  bottom: 0; 
+  width: 100%;
+}
+
+.bbuttn{
+  color: blue;
+  border: none;
+}
+
+

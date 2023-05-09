@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import PartidaList from './PartidaList';
 import { getPartides } from '../../Slices/Partides/thunks';
+import { startLoadingPartides } from '../../Slices/Partides/partidaSlice';
 
 
 
@@ -15,7 +16,7 @@ export default  function PartidasList() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getPartides(authToken));        
+        dispatch(getPartides(authToken));            
     }, []);
 
     return(
