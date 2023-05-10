@@ -16,7 +16,8 @@ export const getPartides = (authToken) => {
             });
             const resposta = await data.json();
             if (resposta){
-                dispatch(setPartides(resposta));                
+                dispatch(setPartides(resposta));  
+                console.log(resposta)              
             }else{
                 console.log('partides buides')
             }

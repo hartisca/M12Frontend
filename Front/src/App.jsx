@@ -11,6 +11,8 @@ import PartidasList from './components/Partides/PartidasList';
 import NotFound from './NotFound';
 import { PartidaShow } from './components/Partides/PartidaShow';
 
+import {EquipsList} from './components/Equips/EquipsList'
+
 
 
 function App() {
@@ -32,7 +34,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<PartidasList />} />
           <Route path="/partidas" element={<PartidasList />} />
-          <Route path="/partidas/:id" element={ <PartidaShow /> } />
+          <Route path="/partidas/:id" element={ <PartidaShow /> } /> {/*Canviar per EquipsList*/}
+          <Route path="/equips/list/:id" element={<EquipsList />} />
         </Routes>
         <BotoBack />
       </> )

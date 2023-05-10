@@ -14,6 +14,8 @@ export const partidaSlice = createSlice({
     missatge: "",
     page: 0,
     errors: "",
+    partidaId: null,
+    
  }, 
  reducers: {
     setPartides: (state, action) => {
@@ -26,11 +28,15 @@ export const partidaSlice = createSlice({
     setPartida: (state, action) => {
         state.partida = action.payload;
         state.isLoading = false;
+    },
+    setPartidaId: (state, action) => {
+        state.partidaId = action.payload;
     }
+    
  }
 })
 
 // Action creators are generated for each case reducer function
-export const { setPartides, setPartida, startLoadingPartides, errors, missatge } = partidaSlice.actions
+export const { setPartides, setPartida, startLoadingPartides, errors, missatge, setPartidaId } = partidaSlice.actions
 
 export const partidaReducer = partidaSlice.reducer
