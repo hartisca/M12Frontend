@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import {FaRegEye, FaRegEyeSlash} from 'react-icons/fa';
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux'
 import { setToken } from '../Slices/authSlice'
+
 
 
 import {
@@ -43,13 +45,15 @@ export default function Register({setRegister}){
       });
       const resposta = await fetchResponse.json();
       if (resposta.success === true ){
-        dispatch(setToken(resposta.authToken))
+        dispatch(setToken(resposta.authToken))        
         console.log(resposta)
       }
     } catch{
       console.log('Error en el registro:', errors);
     }
   } 
+
+ 
   
   return(
     <>

@@ -5,8 +5,8 @@ export const equipSlice = createSlice({
  initialState: { 
   equips: [],
   equip: {
-      nom: "",
-      punts: "",
+    nom: "",
+    punts: "",
   },
     isLoading: true,
     missatge: "",    

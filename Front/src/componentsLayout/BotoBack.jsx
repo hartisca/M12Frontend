@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {IoChevronBackOutline} from 'react-icons/io5'
 
+
+
 const BotoBack = () => {
   const navigate = useNavigate();
 

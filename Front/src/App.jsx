@@ -5,13 +5,14 @@ import { Routes, Route } from "react-router-dom";
 
 import { UserContext } from "./UserContext";
 import { LoginRegister } from './auth/LoginRegister';
-import { Menu } from './componentsLayout/menu';
+import { Menu } from './componentsLayout/Menu';
 import  BotoBack  from './componentsLayout/BotoBack'
 import PartidasList from './components/Partides/PartidasList';
 import NotFound from './NotFound';
 import { PartidaShow } from './components/Partides/PartidaShow';
 
-import {EquipsList} from './components/Equips/EquipsList'
+import { EquipsList } from './components/Equips/EquipsList'
+import { Jugador }  from './components/Jugadors/Jugador';
 
 
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/partidas" element={<PartidasList />} />
           <Route path="/partidas/:id" element={ <PartidaShow /> } /> {/*Canviar per EquipsList*/}
           <Route path="/equips/list/:id" element={<EquipsList />} />
+          <Route path="/jugadors/:id" element={<Jugador />} />
         </Routes>
         <BotoBack />
       </> )

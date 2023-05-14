@@ -16,8 +16,7 @@ export const getPartides = (authToken) => {
             });
             const resposta = await data.json();
             if (resposta){
-                dispatch(setPartides(resposta));  
-                console.log(resposta)              
+                dispatch(setPartides(resposta));                                
             }else{
                 console.log('partides buides')
             }
@@ -42,12 +41,9 @@ export const getPartida = (authToken, id ) => {
       method: "GET",
     })
     const resposta = await data.json();
-    console.log(resposta)
-
+    
     if (resposta.success === true){
-      dispatch(setPartida(resposta.data))
-      console.log('exito')
-      console.log(resposta)
+      dispatch(setPartida(resposta.data))      
     }else{
       console.log('Error en la partida:',errors);
     }

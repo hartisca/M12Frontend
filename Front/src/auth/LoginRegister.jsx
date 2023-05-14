@@ -4,6 +4,8 @@ import Register from './Register';
 
 
 
+
+
 export const LoginRegister = () => {
 
     let [ register, setRegister ] = useState(true);
@@ -11,7 +13,9 @@ export const LoginRegister = () => {
 
   return (
     <>
-        {register ? <Login setRegister={setRegister}/> : <Register setRegister={setRegister} />}
+     
+      {register ? <Login setRegister={setRegister}/> : <Register setRegister={setRegister} />}
+      
     </>
   )
 }

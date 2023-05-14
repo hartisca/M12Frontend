@@ -61,15 +61,12 @@ const useLogin = () => {
             
           });
           const resposta = await data.json();          
-          if (resposta.success === true) {
-            /*
-            dispatch(setToken(resposta.authToken))
-            console.log("try") */
+          if (resposta.success === true) {          
             setAuthToken(resposta.authToken)
             localStorage.setItem("authToken",resposta.authToken);
             setUser(resposta.usuari);
             setUserEmail(resposta.email);
-            console.log(resposta.authToken, usuari);            
+                       
           }else {
             setError(resposta.message)
           }
