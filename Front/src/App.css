@@ -45,5 +45,16 @@ body{
   width: 70%;
 }
 
+.btnlogin:hover{
+  cursor: pointer;
+}
 
+.regis:hover{
+  cursor: pointer;
+}
+
+.lgnCont{
+  background-color: rgba(255, 255, 255, 0.425);
+
+}
 

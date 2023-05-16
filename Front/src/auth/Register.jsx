@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import {FaRegEye, FaRegEyeSlash} from 'react-icons/fa';
 import { useForm } from "react-hook-form";
-import { useDispatch } from 'react-redux'
-import { setToken } from '../Slices/authSlice'
 
+import { setToken } from '../Slices/authSlice'
+import { UserContext } from '../UserContext';
 
 
 import {
@@ -26,8 +26,10 @@ export default function Register({setRegister}){
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
   }; 
+
+  let {authToken,setAuthToken,usuari, setUsuari} = useContext(UserContext)  
+  const navigate = useNavigate();
   
-  const dispatch = useDispatch();
   //react-hook-forms
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -45,15 +47,15 @@ export default function Register({setRegister}){
       });
       const resposta = await fetchResponse.json();
       if (resposta.success === true ){
-        dispatch(setToken(resposta.authToken))        
+        setAuthToken(resposta.authToken)
+        navigate('/partidas')
+        window.location.reload()
         console.log(resposta)
       }
     } catch{
       console.log('Error en el registro:', errors);
     }
-  } 
-
- 
+  }  
   
   return(
     <>
@@ -77,7 +79,6 @@ export default function Register({setRegister}){
                 <button type="button" onClick={handlePasswordToggle} className="btn-toggle-password">
                   {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
                 </button>
-
                 
                 <button className='btnlogin mx-2 mb-5 mt-5 px-5' onClick={handleSubmit(handleRegister)} color='white' size='lg'>
                   Registrat

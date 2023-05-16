@@ -28,7 +28,6 @@ export default function Login({setRegister}) {
     setShowPassword(!showPassword);
   };
 
-  const dispatch = useDispatch();
   //react-hook-forms
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -53,7 +52,7 @@ export default function Login({setRegister}) {
                   {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
                 </button>
 
-                <p className="small mb-3 pb-lg-2"><a className="text-white-50" href="#!">Forgot password? </a></p>
+                <p></p>
                 <button className='btnlogin mx-2 mb-5 px-5' onClick={handleSubmit(onSubmit)} color='white' size='lg'> Login </button>
 
                 <div>

@@ -11,6 +11,7 @@ const store = configureStore({
     equip: equipReducer,
     jugador: jugadorReducer
   },
+  
 })
 
 export default store

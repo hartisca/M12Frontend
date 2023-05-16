@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 export const fitesSlice = createSlice({
  name: 'fites',
  initialState: { 
-    fites: [],
+    fetes: [],
+    noFetes: [],
     fita: {
         lat: 0,
         long: 0,
@@ -18,11 +19,17 @@ export const fitesSlice = createSlice({
     setMissatge: (state, action) => {
         state.missatge = action.payload
     },
+    setFetes: (state, action) => {
+        state.fetes = action.payload;
+    },
+    setNoFetes: (state, action) => {
+        state.noFetes = action.payload;
+    }
     
  },
 })
 
 // Action creators are generated for each case reducer function
-export const { startLoadingFites, setMissatge } = fitesSlice.actions
+export const { startLoadingFites, setMissatge, setFetes, setNoFetes } = fitesSlice.actions
 
 export const fitesReducer = fitesSlice.reducer

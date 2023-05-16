@@ -1,4 +1,4 @@
-import { setJugador, errors } from "./jugadorSlice";
+import { setJugador, errors, saveResponseId } from "./jugadorSlice";
 
 export const getJugador = ( authToken, id ) => {    
     return async (dispatch, getState) => {
@@ -15,7 +15,8 @@ export const getJugador = ( authToken, id ) => {
       const resposta = await data.json();      
   
       if (resposta.success === true){
-        dispatch(setJugador(resposta.data))       
+        dispatch(setJugador(resposta.data))  
+        dispatch(saveResponseId(resposta.data.id));
         console.log(resposta)
       }else{
         console.log('Error en el jugador:',errors);

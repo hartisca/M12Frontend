@@ -15,8 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
   <Provider store={store}>
     <BrowserRouter>
-      <App />
-      {/*<PartidaMap />*/}     
+      <App />        
     </BrowserRouter>
   </Provider>
 

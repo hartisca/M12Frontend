@@ -9,12 +9,6 @@ const useLogin = () => {
   let {usuari, setUsuari, email, setUserEmail, authToken, setAuthToken} = useContext(UserContext);
   const [error, setError] = useState();
 
-    /*
-    const token = useSelector((state) => state.token)
-
-    const dispatch = useDispatch();*/
-
-    
 
     const checkAuthToken = async () => {
 
@@ -32,16 +26,13 @@ const useLogin = () => {
 
           const resposta = await data.json();
           console.log(resposta)
-          if (resposta.success === true) {
-            /*dispatch(setToken(token));
-            dispatch(setUsuari(email));  */
+          if (resposta.success === true) {            
             setAuthToken(myToken);           
             setUserEmail(resposta.email);
             setUsuari(resposta.usuari);                     
           }
         }
         else{
-          //dispatch(setToken(''));
           setAuthToken("");
         }
     }
@@ -76,8 +67,8 @@ const useLogin = () => {
     
     };
     useEffect(() => {
-        checkAuthToken()
-      }, []);
+      checkAuthToken()        
+    }, []);
   
       return { sendLogin, error}
 }

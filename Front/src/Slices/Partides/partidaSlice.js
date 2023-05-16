@@ -36,6 +36,8 @@ export const partidaSlice = createSlice({
  }
 })
 
+export const selectResponseIdPartida = state => state.partida.partidaId;
+
 // Action creators are generated for each case reducer function
 export const { setPartides, setPartida, startLoadingPartides, errors, missatge, setPartidaId } = partidaSlice.actions
 

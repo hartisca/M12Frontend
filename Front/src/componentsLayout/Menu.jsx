@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 
@@ -8,11 +8,19 @@ import { IoMdSettings } from 'react-icons/io'
 import { RiLogoutBoxLine } from 'react-icons/ri'
 
 import './layout.css'
+import { selectResponseId } from '../Slices/Jugador/jugadorSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { selectResponseIdPartida } from '../Slices/Partides/partidaSlice';
 
 export const Menu = () => {
-
   
   let { authToken, setAuthToken } = useContext(UserContext);
+
+  const rutaActual =  window.location.pathname;
+  const jugadorId = useSelector(selectResponseId);
+  const partidaId = useSelector(selectResponseIdPartida);
+
+  const [motraBoto, setMostrarBoto] = useState(false);
 
   const sendLogout = async (e) => {
     e.preventDefault();
@@ -30,9 +38,17 @@ export const Menu = () => {
         else console.log("Error logout")
     }catch{
         console.log(data);        
-    }
-    
+    }    
   };
+
+  useEffect(() => {
+    
+    if (rutaActual === '/mapa'){
+      setMostrarBoto(true);
+    } else{
+      setMostrarBoto(false);
+    }
+  }, [rutaActual]);
 
   return (
     <>
@@ -43,10 +59,10 @@ export const Menu = () => {
         </div> */}
         <nav>
           <ul className='nav-links'>
-            <li><Link to ="#"></Link>Mapa</li>
-            <li><Link to ="#"></Link>Jugador</li>
-            <li><Link to ="#"></Link>Info Partida</li>
-            <li><Link to ="#"></Link>Settings</li>
+            <li><Link to ="/mapa">Mapa</Link></li>
+            <li><Link to ={"/jugadors/" + jugadorId}>Jugador</Link></li>
+            <li><Link to ={"/partidas/" + partidaId}>Info Partida</Link></li>   
+            {motraBoto ? <li><button onClick={''}>Localitza'm</button></li> : <></>}         
           </ul>
         </nav>
               

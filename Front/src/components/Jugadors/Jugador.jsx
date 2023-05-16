@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import '../components.css'
 
 export const Jugador = () => {
+  
   let {authToken,setAuthToken,usuari, setUsuari} = useContext(UserContext)    
 
   const jugador = useSelector((state) => state.jugador.jugador);
@@ -22,7 +23,7 @@ export const Jugador = () => {
     
     <div className='wrapper'>
       <div className='left'>
-        <img src="" alt="userImage" width="100"></img>
+        <img src={jugador.img} alt="userImage" width="100"></img>
         <p>Nom: </p>
         <button>Info</button>
       </div>
