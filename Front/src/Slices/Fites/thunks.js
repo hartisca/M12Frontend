@@ -8,7 +8,7 @@ export const getFites = (authToken, jugadorId, partidaId) => {
     return async (dispatch) => {
                 
         try{
-            const data = await fetch ('http://127.0.0.1:8000/api/puta/', + partida, + "/" + id, {
+            const data = await fetch ('http://127.0.0.1:8000/api/fitas/list/', + partida, + "/", + id, {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
