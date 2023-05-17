@@ -154,7 +154,7 @@ const nofetes =  [
     getMapa();
   }, []);
 
-  const checkPositionWithinRadius = (userPosition) => {
+  /*const checkPositionWithinRadius = (userPosition) => {
     for (const nofete of nofetes) {
       const nofetePosition = {
         latitude: parseFloat(nofete.lat),
@@ -168,7 +168,30 @@ const nofetes =  [
       }
       console.log('ieeeee')
     }
+  };*/
+
+  const [userLocation, setUserLocation] = useState(null);
+
+
+  const getLocationOnClick = () => {
+    console.log('botomapa')
+    if ('geolocation' in navigator) {
+      
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ latitude, longitude });
+          console.log(longitude)
+        },
+        (error) => {
+          console.error('Error getting user location:', error);
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported in this browser.');
+    }
   };
+
 
 
   const getDistance = (point1, point2) => {
@@ -218,8 +241,9 @@ const nofetes =  [
         </Map>       
       </div>
       <div className='localitza'>
-        {/*<button onClick={checkPositionWithinRadius()}>Localitza'm</button>*/}
+        <button onClick={getLocationOnClick}>Localitza'm</button>
       </div>
+
      
       
       </>
