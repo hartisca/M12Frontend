@@ -48,6 +48,7 @@ export default function Register({setRegister}){
       const resposta = await fetchResponse.json();
       if (resposta.success === true ){
         setAuthToken(resposta.authToken)
+        localStorage.setItem("authToken",resposta.authToken);
         navigate('/partidas')
         window.location.reload()
         console.log(resposta)
