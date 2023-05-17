@@ -41,8 +41,7 @@ export default  function PartidasList() {
                       <tr key={partida.id}>
                           <PartidaList partida={partida} />
                       </tr>
-                    ))
-                    
+                    ))                    
                   ) : (
                     <tr>
                       <td colSpan="3"><RotateLoader color="#000" />Carregant partides...</td>

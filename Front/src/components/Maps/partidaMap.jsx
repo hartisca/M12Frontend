@@ -7,6 +7,7 @@ import L from 'leaflet';
 
 import markerIcon from '../img/BOMB.png';
 import Icon2 from '../img/boom.png';
+import geolib from 'geolib';
 
 import "leaflet/dist/leaflet.css";
 import { useDispatch, useSelector } from 'react-redux';
@@ -74,8 +75,8 @@ function PartidaMap() {
 const nofetes =  [
   {
       "id": 1,
-      "lat": "41.2145400",
-      "long": "1.7255100",
+      "lat": "41.2352512",
+      "long": "1.7301504",
       "partida_id": 1,
       "tipus_id": 1,
       "created_at": "2023-05-08T15:41:33.000000Z",
@@ -101,31 +102,27 @@ const nofetes =  [
   }
 ];
   const area = {
-  "id": 1,
-  "nom": "vilanova",
-  "lat1": "41.1975",
-  "long1": "1.7000",
-  "lat2": "41.2061",
-  "long2": "1.7650"
+    "id": 1,
+    "nom": "vilanova",
+    "lat1": "41.1975",
+    "long1": "1.7000",
+    "lat2": "41.2061",
+    "long2": "1.7650"
   };
 
-  const rectangle=[
-    [area.lat1, area.long1],
-    [area.lat2, area.long2],
-  ]
+  const rectangle = [
+    [parseFloat(area.lat1), parseFloat(area.long1)],
+    [parseFloat(area.lat2), parseFloat(area.long2)],
+  ];
 
-  const lat1 = parseFloat(area.lat1);
-  const long1 = parseFloat(area.long1);
-  const lat2 = parseFloat(area.lat2);
-  const long2 = parseFloat(area.long2);
-
-
+  const center = [
+    (rectangle[0][0] + rectangle[1][0]) / 2, // Latitude
+    (rectangle[0][1] + rectangle[1][1]) / 2, // Longitude
+  ];
+  
 
   const [colorIndex, setColorIndex] = useState(0);
   const [userPosition, setUserPosition] = useState(null);
-
-
-
 
   useEffect(() => {
     // Retrieve user's position
@@ -154,45 +151,71 @@ const nofetes =  [
     getMapa();
   }, []);
 
-  /*const checkPositionWithinRadius = (userPosition) => {
-    for (const nofete of nofetes) {
-      const nofetePosition = {
-        latitude: parseFloat(nofete.lat),
-        longitude: parseFloat(nofete.long)
-      };
 
-      const distance = getDistance(userPosition, nofetePosition);
-
-      if (distance <= 10) {
-        console.log(`User is within 10 meters of nofeta with ID ${nofete.id}`);
-      }
-      console.log('ieeeee')
-    }
-  };*/
 
   const [userLocation, setUserLocation] = useState(null);
 
 
-  const getLocationOnClick = () => {
-    console.log('botomapa')
-    if ('geolocation' in navigator) {
-      
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUserLocation({ latitude, longitude });
-          console.log(longitude)
-        },
-        (error) => {
-          console.error('Error getting user location:', error);
-        }
-      );
-    } else {
-      console.error('Geolocation is not supported in this browser.');
-    }
-  };
+const getLocationOnClick = () => {
+  console.log('botomapa');
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const userLocation = { latitude, longitude };
+        console.log(position);
+        console.log(userLocation);
+        setUserLocation(userLocation);
+
+        // Compare user location with each object in nofetes
+        nofetes.forEach((nofete) => {
+          const nofeteLocation = {
+            latitude: parseFloat(nofete.lat),
+            longitude: parseFloat(nofete.long),
+          };
+
+          const distanceInMeters = calculateDistance(userLocation, nofeteLocation);
+
+          // Perform the desired comparison logic here
+          if (distanceInMeters <= 10) {
+            console.log('User location is within 10 meters of a nofete location:', nofete.id);
+          }
+          else{
+            console.log('no estas a cap fita');
+          }
+        });
+      },
+      (error) => {
+        console.error('Error getting user location:', error);
+      }
+    );
+  } else {
+    console.error('Geolocation is not supported in this browser.');
+  }
+};
+
+// Function to calculate distance using the Haversine formula
+const calculateDistance = (start, end) => {
+  const earthRadius = 6371; // Earth's radius in kilometers
+  const latDiff = toRadians(end.latitude - start.latitude);
+  const lonDiff = toRadians(end.longitude - start.longitude);
+  const a =
+    Math.sin(latDiff / 2) * Math.sin(latDiff / 2) +
+    Math.cos(toRadians(start.latitude)) * Math.cos(toRadians(end.latitude)) * Math.sin(lonDiff / 2) * Math.sin(lonDiff / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = earthRadius * c * 1000; // Distance in meters
+  return distance;
+};
+
+// Function to convert degrees to radians
+const toRadians = (degrees) => {
+  return degrees * (Math.PI / 180);
+};
 
 
+
+
+/*
 
   const getDistance = (point1, point2) => {
     const latDiff = point2.latitude - point1.latitude;
@@ -209,15 +232,24 @@ const nofetes =  [
     return distance; // Distance in kilometers (approximation)
   };       
   
+
+*/
+
     return (
         <>
           <div className='colocaMapa'>
-        <Map center={[41.2512, 1.7245]} zoom={12} scrollWheelZoom={true}  >
+        <Map center={center} zoom={12} scrollWheelZoom={true}  >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <Rectangle bounds={rectangle}/>
+          {userLocation && (
+            <Marker position={[userLocation.latitude, userLocation.longitude]}>
+              <Popup>Your Location</Popup>
+            </Marker>
+          )}
+
           {nofetes.map((item, id) => (
             <Marker key={id} position={[item.lat, item.long]} icon={customIcon}>              
                 <Pane>
