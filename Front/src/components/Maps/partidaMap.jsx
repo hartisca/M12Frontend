@@ -161,13 +161,12 @@ const nofetes =  [
         longitude: parseFloat(nofete.long)
       };
 
-
       const distance = getDistance(userPosition, nofetePosition);
-
 
       if (distance <= 10) {
         console.log(`User is within 10 meters of nofeta with ID ${nofete.id}`);
       }
+      console.log('ieeeee')
     }
   };
 
@@ -185,10 +184,7 @@ const nofetes =  [
     const distance = Math.sqrt(latDistance ** 2 + lonDistance ** 2);
  
     return distance; // Distance in kilometers (approximation)
-  };
-
-
-       
+  };       
   
     return (
         <>
@@ -220,6 +216,9 @@ const nofetes =  [
               </Marker>
           ))}
         </Map>       
+      </div>
+      <div className='localitza'>
+        {/*<button onClick={checkPositionWithinRadius()}>Localitza'm</button>*/}
       </div>
      
       
