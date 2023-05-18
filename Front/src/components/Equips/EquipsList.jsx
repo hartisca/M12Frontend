@@ -18,11 +18,8 @@ export const EquipsList = () => {
   const dispatch = useDispatch();
   const {id} = useParams();
 
-  useEffect(() => {    
-    
-    console.log(partidaId)
-    dispatch(getEquips(authToken, id));    
-    console.log(id);
+  useEffect(() => {
+    dispatch(getEquips(authToken, id));
   }, []);
 
   return (    

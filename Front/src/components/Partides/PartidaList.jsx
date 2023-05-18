@@ -31,6 +31,7 @@ const PartidaList = ({partida}) => {
     return(
         <>
             <td>{partida.nom}</td>
+            <td>{partida.poblacio}</td>
             <td>{partida.puntsVictoria}</td>
             <td>{partida.duracio}</td>           
             <td>

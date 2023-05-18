@@ -13,7 +13,6 @@ const EquipList = ({equip}) => {
     const navigate = useNavigate(); 
     const buttonRef = useRef(null);
     
-
     async function unirseEquip() {
         const confirmacion = window.confirm('¿Segur que vols unir-te a aquest equip?');
         if (confirmacion) {
@@ -35,19 +34,14 @@ const EquipList = ({equip}) => {
                 
             });
             const resposta = await response.json();
-            console.log('arar=')
-            console.log(data)
             if (resposta.success === true){
-                console.log(resposta.data);
                 dispatch(setJugador(resposta.data));
-                navigate('/jugadors/' + resposta.data.id)
-                
+                navigate('/jugadors/' + resposta.data.id)                
             } else {
                 console.log("error al crear jugador")
             }
             
-            } catch (error) {
-                // Manejar el error si ocurre alguno
+            } catch (error) {                
                 console.error('Error:', error);
             }
         }

@@ -30,6 +30,7 @@ export default  function PartidasList() {
                   <thead>
                     <tr>
                         <th>Nom</th>
+                        <th>Població</th>
                         <th>Punts de victoria</th>
                         <th>Duració</th>  
                         <th>Accions</th>                      
@@ -44,7 +45,7 @@ export default  function PartidasList() {
                     ))                    
                   ) : (
                     <tr>
-                      <td colSpan="3"><RotateLoader color="#000" />Carregant partides...</td>
+                      <td colSpan="3" ><RotateLoader color="#000" />Carregant partides...</td>
                     </tr>
                   )}
                   </tbody>

@@ -17,10 +17,8 @@ export const getFites = (authToken, jugadorId, partidaId) => {
                   method: "GET",                  
                 })   
             
-            const resposta = await data.json();
-            console.log('hoasj')
-            console.log(resposta)    
-                        
+            const resposta = await data.json();            
+                                   
             if (resposta.success == true){  
                 console.log('dintresuccess')              
                 dispatch(setFetes(resposta.fetes))
