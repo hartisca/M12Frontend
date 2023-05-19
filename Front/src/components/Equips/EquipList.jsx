@@ -30,7 +30,7 @@ const EquipList = ({equip}) => {
                     Confirmar
                 </button>
             </div>, {
-              position: toast.POSITION.TOP_CENTER,
+              position: toast.POSITION.BOTTOM_CENTER,
               closeOnClick: false,
               draggable: true,
               draggablePercent: 60,

@@ -21,9 +21,16 @@ import { getMapa } from '../../Slices/Maps/thunks';
 import { selectResponseEquipId } from '../../Slices/Equips/equipSlice';
 import { fitaFeta } from '../../Slices/Fites/thunks';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { GiMineExplosion } from 'react-icons/gi';
+import { FaRegFrownOpen } from 'react-icons/fa'
+
 function PartidaMap() {
 
   let { authToken, setAuthToken,usuari, setUsuari } = useContext(UserContext);
+
+
   const jugadorId = useSelector(selectResponseId);
   const partidaId = useSelector(selectResponseIdPartida);
   const mapaId = useSelector(selectMapaIdPartida);
@@ -37,6 +44,41 @@ function PartidaMap() {
   const colors = ["red", "yellow"];
 
   const dispatch = useDispatch();
+
+  const notifySuccess = (message) => {
+    toast.success(
+      <div>        
+        {message}
+        <GiMineExplosion size={24} style={{ marginLeft: 10 }} />
+      </div>,{
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+  
+  const notifyFailure = (message) => {
+    toast.error(
+      <div>        
+        {message}
+        <FaRegFrownOpen size={24} style={{ marginLeft: 10 }} />
+      </div>, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      
+    });
+  };
 
   const customIcon = L.icon({
     iconUrl: markerIcon,
@@ -98,9 +140,12 @@ function PartidaMap() {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, []); 
+
+  let isInRange = false;
 
   const getLocationOnClick = () => {
+    let anyFitaInRange = false;
     
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -119,17 +164,19 @@ function PartidaMap() {
             const distanceInMeters = calculateDistance(userLocation, nofeteLocation);
 
             // Perform the desired comparison logic here
-            if (distanceInMeters <= 10) {
+            if (distanceInMeters <= 10 && !isInRange) {
+              isInRange = true;
               let fitaId = nofete.id;
-              dispatch(fitaFeta(authToken, jugadorId, fitaId , equipId))
-              dispatch(getFites(authToken, jugadorId, partidaId ))
-              console.log('Acabes d\' aconseguir la fita:', nofete.id, 'enhorabona!');
-              
-            }
-            else{
-              console.log('no estas a cap fita');
+              dispatch(fitaFeta(authToken, jugadorId, fitaId , equipId));
+              dispatch(getFites(authToken, jugadorId, partidaId ));
+              notifySuccess('Has completat una fita enhorabona!');    
+                      
             }
           });
+          if (!isInRange) {
+            // El usuario no está cerca de ninguna fita
+            notifyFailure('No estàs a cap fita.');
+          }
         },
         (error) => {
           console.error('Error getting user location:', error);
@@ -197,6 +244,7 @@ function PartidaMap() {
     </div>
     <div className='localitza'>
       <button onClick={getLocationOnClick}>Localitza'm</button>
+      <ToastContainer />
     </div>    
     
     </>

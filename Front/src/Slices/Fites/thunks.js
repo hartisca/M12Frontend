@@ -30,35 +30,32 @@ export const getFites = (authToken, jugadorId, partidaId) => {
 }
 
 export const fitaFeta = (authToken, jugadorId, fitaId, equipId) => {    
-    console.log(Number.isInteger(jugadorId), Number.isInteger(fitaId), Number.isInteger(equipId));
-    console.log(jugadorId, fitaId, equipId);
-return async (dispatch) => {
-    const formData = new FormData();
-    formData.append('equip', equipId);
-    formData.append('jugador', jugadorId);
-    formData.append('fita', fitaId);    
     
-    try{
-        console.log('11111111')
-        const data = await fetch (`http://127.0.0.1:8000/api/fitasfetas/`, {
-            headers: {
-                Accept: "application/json",                
-                Authorization: "Bearer " + authToken,    
-                },
-                body: formData,
-                method: "POST",                  
-            })   
+    return async (dispatch) => {
+        const formData = new FormData();
+        formData.append('equip', equipId);
+        formData.append('jugador', jugadorId);
+        formData.append('fita', fitaId);    
         
-        const resposta = await data.json();            
-        console.log('222222222222')                        
-        if (resposta.success == true){  
-             console.log('333333333333')             
-            dispatch(setFetes(resposta.fetes))
-            dispatch(setNoFetes(resposta.nofetes))
+        try{
             
+            const data = await fetch (`http://127.0.0.1:8000/api/fitasfetas/`, {
+                headers: {
+                    Accept: "application/json",                
+                    Authorization: "Bearer " + authToken,    
+                    },
+                    body: formData,
+                    method: "POST",                  
+                })   
+            
+            const resposta = await data.json();            
+                                 
+            if (resposta.success == true){                            
+                dispatch(setFetes(resposta.fetes))
+                dispatch(setNoFetes(resposta.nofetes))                
+            }
+        } catch {
+            console.log('Error al fetchFites')
         }
-    } catch {
-        console.log('Error al fetchFites')
     }
-}
 }
