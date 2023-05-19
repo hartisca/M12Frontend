@@ -11,14 +11,15 @@ import './layout.css'
 import { selectResponseId } from '../Slices/Jugador/jugadorSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { selectResponseIdPartida } from '../Slices/Partides/partidaSlice';
+import { selectMapaIdPartida } from '../Slices/Partides/partidaSlice';
 
 export const Menu = () => {
   
   let { authToken, setAuthToken } = useContext(UserContext);
   const jugadorId = useSelector(selectResponseId);
   const partidaId = useSelector(selectResponseIdPartida);
+  const mapaId = useSelector(selectMapaIdPartida);
 
-  
 
   const sendLogout = async (e) => {
     e.preventDefault();
@@ -50,7 +51,7 @@ export const Menu = () => {
         </div> */}
         <nav>
           <ul className='nav-links'>
-            <li><Link to ="/mapa">Mapa</Link></li>
+            <li><Link to ={"/mapa/" + mapaId}>Mapa</Link></li>
             <li><Link to ={"/jugadors/" + jugadorId}>Jugador</Link></li>
             <li><Link to ={"/partidas/" + partidaId}>Info Partida</Link></li>                     
           </ul>

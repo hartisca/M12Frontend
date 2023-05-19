@@ -1,4 +1,4 @@
-import { setEquips, setEquip, errors, startLoadingEquips } from "./equipSlice";
+import { setEquips, setEquip, errors, startLoadingEquips, saveResponseEquipId } from "./equipSlice";
 
 export const getEquips = (authToken, partidaId) => {
   
@@ -16,7 +16,7 @@ export const getEquips = (authToken, partidaId) => {
 
       const resposta = await data.json();
       if (resposta.success === true) {
-        dispatch(setEquips(resposta.data));             
+        dispatch(setEquips(resposta.data));                
       } else {
         console.log("equips buits");
       }

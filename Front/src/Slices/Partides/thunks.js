@@ -1,4 +1,4 @@
-import {setPartides, setPartida, startLoadingPartides, errors, setPartidaId} from './partidaSlice'
+import {setPartides, setPartida, startLoadingPartides, errors, setPartidaId, setMapaId} from './partidaSlice'
 
 export const getPartides = (authToken) => {
 
@@ -44,7 +44,9 @@ export const getPartida = (authToken, id ) => {
     
     if (resposta.success === true){
       dispatch(setPartida(resposta.data))  
-      dispatch(setPartidaId(resposta.data.id))    
+      dispatch(setPartidaId(resposta.data.id))  
+      dispatch(setMapaId(resposta.data.mapa_id))  
+      console.log('mapaId: ' + resposta.data.mapa_id)
     }else{
       console.log('Error en la partida:',errors);
     }

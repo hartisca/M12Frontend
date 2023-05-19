@@ -115,3 +115,22 @@ tbody tr:nth-child(even){
     border-radius: .6rem;  
     padding: 4rem 2rem;
 }
+
+.toast-content {
+    display: grid;
+    grid-gap: 8px;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    
+  }
+  
+  .toast-content span {
+    margin-top: 8px;
+   
+  }
+  
+  .toast-confirm {
+    width: 100%;
+    background-color: rgb(231, 231, 158);
+  }

@@ -1,11 +1,11 @@
 import { setMapa } from "./mapaSlice";
 
-export const getMapa = (authToken, partidaId) => {
+export const getMapa = (authToken, mapaId) => {
        
     return async (dispatch) => {
                 
         try{
-            const data = await fetch (`http://127.0.0.1:8000/api/mapas/${partidaId}`, {
+            const data = await fetch (`http://127.0.0.1:8000/api/mapas/${mapaId}`, {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",

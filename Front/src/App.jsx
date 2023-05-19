@@ -40,7 +40,7 @@ function App() {
           <Route path="/partidas/:id" element={ <> <PartidaShow /><Menu /> </> } /> 
           <Route path="/equips/list/:id" element={<><EquipsList /><MenuLogout /></>} />
           <Route path="/jugadors/:id" element={<><Jugador /><Menu /></>} />
-          <Route path="/mapa" element={<><Mapa /><Menu /></>} />
+          <Route path="/mapa/:id" element={<><Mapa /><Menu /></>} />
         </Routes>
         <BotoBack />
       </> )

@@ -1,4 +1,3 @@
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useState, useEffect, useContext } from 'react';
@@ -17,13 +16,18 @@ import { getFites } from '../../Slices/Fites/thunks';
 
 import { selectResponseId } from '../../Slices/Jugador/jugadorSlice';
 import { selectResponseIdPartida}  from '../../Slices/Partides/partidaSlice';
+import { selectMapaIdPartida } from '../../Slices/Partides/partidaSlice';
 import { getMapa } from '../../Slices/Maps/thunks';
+import { selectResponseEquipId } from '../../Slices/Equips/equipSlice';
+import { fitaFeta } from '../../Slices/Fites/thunks';
 
 function PartidaMap() {
 
   let { authToken, setAuthToken,usuari, setUsuari } = useContext(UserContext);
   const jugadorId = useSelector(selectResponseId);
   const partidaId = useSelector(selectResponseIdPartida);
+  const mapaId = useSelector(selectMapaIdPartida);
+  const equipId = useSelector(selectResponseEquipId);
   const { noFetes = [], fetes = [] } = useSelector((state) => state.fites);
   const { mapa } = useSelector((state) => state.mapa);
   const { nom, lat1, lat2, long1, long2 } = mapa;
@@ -83,7 +87,7 @@ function PartidaMap() {
 
   useEffect(() => {
     dispatch(getFites(authToken, jugadorId, partidaId ))
-    dispatch(getMapa(authToken, partidaId));
+    dispatch(getMapa(authToken, mapaId));
   }, []);
 
   useEffect(() => {
@@ -97,16 +101,14 @@ function PartidaMap() {
   }, []);
 
   const getLocationOnClick = () => {
-    console.log('botomapa');
+    
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          const userLocation = { latitude, longitude };
-          console.log(position);
-          console.log(userLocation);
+          const userLocation = { latitude, longitude };          
           setUserLocation(userLocation);
-
+          
           // Compare user location with each object in nofetes
           nofetes.forEach((nofete) => {
             const nofeteLocation = {
@@ -118,7 +120,11 @@ function PartidaMap() {
 
             // Perform the desired comparison logic here
             if (distanceInMeters <= 10) {
-              console.log('User location is within 10 meters of a nofete location:', nofete.id);
+              let fitaId = nofete.id;
+              dispatch(fitaFeta(authToken, jugadorId, fitaId , equipId))
+              dispatch(getFites(authToken, jugadorId, partidaId ))
+              console.log('Acabes d\' aconseguir la fita:', nofete.id, 'enhorabona!');
+              
             }
             else{
               console.log('no estas a cap fita');

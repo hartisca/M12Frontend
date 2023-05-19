@@ -6,15 +6,51 @@ import { getPartida } from '../../Slices/Partides/thunks';
 import { useNavigate } from 'react-router-dom';
 import {setJugador} from '../../Slices/Jugador/jugadorSlice';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { BsPatchQuestionFill } from 'react-icons/bs'
+
+import { saveResponseEquipId } from '../../Slices/Equips/equipSlice';
+
 const EquipList = ({equip}) => {
 
-    let {authToken,setAuthToken,usuari, setUsuari} = useContext(UserContext)    
+    let {authToken, setAuthToken, usuari, setUsuari} = useContext(UserContext)    
     const dispatch = useDispatch();
     const navigate = useNavigate(); 
     const buttonRef = useRef(null);
     
     async function unirseEquip() {
-        const confirmacion = window.confirm('¿Segur que vols unir-te a aquest equip?');
+        const confirmacion = await new Promise((resolve) => {
+            const toastId = toast.info( <div className="toast-content">
+                <div>
+                    <BsPatchQuestionFill size={24} />
+                    <span>¿Segur que vols unir-te a aquest equip?</span>
+                </div>
+                <button className="toast-confirm" onClick={() => resolve(true)}>
+                    Confirmar
+                </button>
+            </div>, {
+              position: toast.POSITION.TOP_CENTER,
+              closeOnClick: false,
+              draggable: true,
+              draggablePercent: 60,
+              hideProgressBar: true,
+              progress: undefined,
+              autoClose: false,
+              icon: false,              
+            });
+      
+            
+            toast.onChange((visibleToasts) => {
+              if (visibleToasts.length && visibleToasts[0].id === toastId) {
+                const { progress } = visibleToasts[0];
+                if (progress >= 1) {
+                  resolve(false);
+                  toast.dismiss(toastId);
+                }
+              }
+            });
+          });
         if (confirmacion) {
             const data = {
                 equip: equip.id
@@ -35,7 +71,7 @@ const EquipList = ({equip}) => {
             });
             const resposta = await response.json();
             if (resposta.success === true){
-                dispatch(setJugador(resposta.data));
+                dispatch(setJugador(resposta.data));                               
                 navigate('/jugadors/' + resposta.data.id)                
             } else {
                 console.log("error al crear jugador")
@@ -55,7 +91,7 @@ const EquipList = ({equip}) => {
             <td>
                 <button className={authToken ? "button-auth" : "button-noauth"} ref={buttonRef} onClick={unirseEquip}> Unir-me </button>
             </td>
-        
+            <ToastContainer /> {/* Agrega esta línea */}
         </>
         
     )
