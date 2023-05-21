@@ -21,7 +21,7 @@ export const Home = () => {
                 </div>
                 <div className='linkEsq'>
                     <p>Ves a les teves partides!</p>
-                    <Link to ={"/partidas"}>Ves-hi!</Link>
+                    <Link to ={"/partidasJugador"}>Ves-hi!</Link>
                 </div>
             </div>
         </div>

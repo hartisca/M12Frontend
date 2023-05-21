@@ -23,7 +23,7 @@ const PartidaList = ({partida}) => {
     }
 
     useEffect(() => {
-        
+                
     }, [unirsePartida]);
     
    

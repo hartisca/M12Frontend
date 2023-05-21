@@ -18,7 +18,7 @@ import { Jugador }  from './components/Jugadors/Jugador';
 import Mapa from './components/Maps/partidaMap';
 import { PartidaMenu } from './components/Partides/PartidaMenu';
 import {Home} from './components/Home';
-
+import { JugadorsList } from './components/Jugadors/JugadorsList';
 
 
 function App() {
@@ -41,6 +41,7 @@ function App() {
           <Route path="/" element={<> <Home /><MenuLogout /> </>} />
           <Route path="/partidas" element={ <><PartidasList /><PartidaMenu /></>} />
           <Route path="/partidas/:id" element={ <> <PartidaShow /><Menu /> </> } /> 
+          <Route path="/partidasJugador" element={ <> <JugadorsList /><Menu /> </> } /> 
           <Route path="/equips/list/:id" element={<><EquipsList /><MenuLogout /></>} />
           <Route path="/jugadors/:id" element={<><Jugador /><Menu /></>} />
           <Route path="/mapa/:id" element={<><Mapa /><Menu /></>} />

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const partidaSlice = createSlice({
  name: 'partida',
  initialState: { 
-    partides: [],
+    partides: [],    
     partida: {
         nom: "",
         puntsvictoria: "",
@@ -38,8 +38,8 @@ export const partidaSlice = createSlice({
     },
     setFilter: (state,action) => {
         state.filter = action.payload
-    }
-    
+    },
+       
  }
 })
 

@@ -19,8 +19,7 @@ export const mapaSlice = createSlice({
     setMapa: (state, action) => {
         state.mapa = action.payload.data.data;
         state.isLoading = false;
-    },    
-    
+    },      
  }
  
 })
