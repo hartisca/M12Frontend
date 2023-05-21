@@ -16,7 +16,8 @@ export const getEquips = (authToken, partidaId) => {
 
       const resposta = await data.json();
       if (resposta.success === true) {
-        dispatch(setEquips(resposta.data));                
+        dispatch(setEquips(resposta.data));  
+        console.log(resposta)              
       } else {
         console.log("equips buits");
       }

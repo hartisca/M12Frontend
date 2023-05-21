@@ -51,12 +51,12 @@ export const Menu = () => {
         </div> */}
         <nav>
           <ul className='nav-links'>
+            <li><Link to ={"/"}>Home</Link></li>
             <li><Link to ={"/mapa/" + mapaId}>Mapa</Link></li>
             <li><Link to ={"/jugadors/" + jugadorId}>Jugador</Link></li>
             <li><Link to ={"/partidas/" + partidaId}>Info Partida</Link></li>                     
           </ul>
-        </nav>
-              
+        </nav>              
         <button className="logout justify-content-end" onClick={(e) => {
           sendLogout(e);
             }}> <RiLogoutBoxLine /> Logout

@@ -60,9 +60,7 @@
     border: none;
     background-color: transparent;
     color: black;
-    font-weight: 600;
-    
-    
+    font-weight: 600;    
 }
 
 .logout:hover{
@@ -70,10 +68,8 @@
     font-size: 1.1em;
 }
 
-
   /*Boto de back*/
-.backButton{  
-    
+.backButton{      
     margin-top: 30px;
     display: flex;
     justify-content: center;  
