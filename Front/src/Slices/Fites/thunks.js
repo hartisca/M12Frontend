@@ -4,11 +4,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 export const getFites = (authToken, jugadorId, partidaId) => {
     const partida = partidaId;
     const id = jugadorId;
-   
+    
     return async (dispatch) => {
                 
         try{
-            const data = await fetch (`http://127.0.0.1:8000/api/fitas/list/${partida}/${id}`, {
+            const data = await fetch (`http://equip06.insjoaquimmir.cat/api/fitas/list/${partida}/${id}`, {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export const getFites = (authToken, jugadorId, partidaId) => {
                                    
             if (resposta.success == true){                              
                 dispatch(setFetes(resposta.fetes))
-                dispatch(setNoFetes(resposta.nofetes))               
+                dispatch(setNoFetes(resposta.nofetes))   
             }
         } catch {
             console.log('Error al fetchFites')
@@ -39,7 +39,7 @@ export const fitaFeta = (authToken, jugadorId, fitaId, equipId) => {
         
         try{
             
-            const data = await fetch (`http://127.0.0.1:8000/api/fitasfetas/`, {
+            const data = await fetch (`http://equip06.insjoaquimmir.cat/api/fitasfetas/`, {
                 headers: {
                     Accept: "application/json",                
                     Authorization: "Bearer " + authToken,    
@@ -52,7 +52,8 @@ export const fitaFeta = (authToken, jugadorId, fitaId, equipId) => {
                                  
             if (resposta.success == true){                            
                 dispatch(setFetes(resposta.fetes))
-                dispatch(setNoFetes(resposta.nofetes))                
+                dispatch(setNoFetes(resposta.nofetes))  
+                console.log(resposta)              
             }
         } catch {
             console.log('Error al fetchFites')

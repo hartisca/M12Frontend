@@ -4,7 +4,7 @@ import { saveResponseEquipId } from "../Equips/equipSlice";
 export const getJugador = ( authToken, id ) => {    
     return async (dispatch, getState) => {
         
-      const data = await fetch('http://127.0.0.1:8000/api/jugadors/' + id, {
+      const data = await fetch('http://equip06.insjoaquimmir.cat/api/jugadors/' + id, {
   
         headers: {
           Accept: "application/json",

@@ -5,7 +5,7 @@ export const getEquips = (authToken, partidaId) => {
   return async (dispatch) => {
     dispatch(startLoadingEquips());    
     try{
-      const data = await fetch ('http://127.0.0.1:8000/api/equips/list/' + partidaId, {
+      const data = await fetch ('http://equip06.insjoaquimmir.cat/api/equips/list/' + partidaId, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

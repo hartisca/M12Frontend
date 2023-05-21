@@ -134,3 +134,65 @@ tbody tr:nth-child(even){
     width: 100%;
     background-color: rgb(231, 231, 158);
   }
+
+  .search{
+      display: flex;
+  }
+
+  .searchbtn{
+      border: solid 1px #83F0C4;
+  }
+  .searchbtn:hover{
+    background-color: #2CD9F0 ;    
+  }
+
+  /*HOME*/
+
+  .containerHome{
+    text-align: center;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.514);
+    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    color: black;
+  }
+
+  .textLinks{
+    display: flex;
+    padding: 30px;      
+  }
+
+  .linkDreta{
+    margin-right: 20px;    
+  }
+
+  .linkEsq{
+    margin-left: 20px;
+  }
+
+  .linkDreta a{
+    color: black;
+    border: solid 1px black;
+    padding: 10px;
+    border-radius: 25px;
+  }
+
+  .linkEsq a{
+    color: black;
+    border: solid 1px black;
+    padding: 10px;
+    border-radius: 25px;
+  }
+
+  .linkDreta a:hover{
+    background: linear-gradient(to right, #83F0C4, #2CD9F0 );
+    color: black;
+    font-size: 1.1em;
+  }
+
+  .linkEsq a:hover{
+    background: linear-gradient(to right, #83F0C4, #2CD9F0 );    
+    color: black;
+    font-size: 1.1em;
+  }

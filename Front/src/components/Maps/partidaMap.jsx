@@ -142,11 +142,11 @@ function PartidaMap() {
     };
   }, []); 
 
-  let isInRange = false;
 
   const getLocationOnClick = () => {
-    let anyFitaInRange = false;
-    
+        
+    let isInRange = false;
+
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -170,7 +170,7 @@ function PartidaMap() {
               dispatch(fitaFeta(authToken, jugadorId, fitaId , equipId));
               dispatch(getFites(authToken, jugadorId, partidaId ));
               notifySuccess('Has completat una fita enhorabona!');    
-                      
+              console.log(noFetes)
             }
           });
           if (!isInRange) {

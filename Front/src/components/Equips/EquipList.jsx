@@ -57,7 +57,7 @@ const EquipList = ({equip}) => {
               };            
             
             try {
-            const response = await fetch('http://127.0.0.1:8000/api/jugadors', {
+            const response = await fetch('http://equip06.insjoaquimmir.cat/api/jugadors', {
                 
                 headers: {
                     Accept: "application/json",

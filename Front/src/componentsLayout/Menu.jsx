@@ -24,7 +24,7 @@ export const Menu = () => {
   const sendLogout = async (e) => {
     e.preventDefault();
     try{
-        const data = await fetch("http://127.0.0.1:8000/api/logout", {
+        const data = await fetch("http://equip06.insjoaquimmir.cat/api/logout", {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
