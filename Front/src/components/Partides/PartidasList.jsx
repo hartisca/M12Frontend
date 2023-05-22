@@ -9,8 +9,9 @@ import RotateLoader from "react-spinners/ClipLoader";
 
 
 export default  function PartidasList() {
-  let { authToken, setAuthToken,usuari, setUsuari } = useContext(UserContext);
-    
+  
+    let { authToken, setAuthToken,usuari, setUsuari } = useContext(UserContext);
+       
     const { partides = [], filter } = useSelector((state) => state.partida);
     const dispatch = useDispatch();
 
@@ -18,7 +19,7 @@ export default  function PartidasList() {
       dispatch(getPartides(authToken));
     }, [filter]);
 
-    return(
+    return(      
         <>        
           <div className='taulaContainer'>          
             <table className="table1">

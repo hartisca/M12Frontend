@@ -39,7 +39,7 @@ export const fitaFeta = (authToken, jugadorId, fitaId, equipId) => {
         
         try{
             
-            const data = await fetch (`http://equip06.insjoaquimmir.cat/api/fitasfetas/`, {
+            const data = await fetch (`http://equip06.insjoaquimmir.cat/api/fitasfetas`, {
                 headers: {
                     Accept: "application/json",                
                     Authorization: "Bearer " + authToken,    
@@ -47,16 +47,16 @@ export const fitaFeta = (authToken, jugadorId, fitaId, equipId) => {
                     body: formData,
                     method: "POST",                  
                 })   
-            
+                            
             const resposta = await data.json();            
-                                 
-            if (resposta.success == true){                            
+                                             
+            if (resposta.success == true){               
                 dispatch(setFetes(resposta.fetes))
-                dispatch(setNoFetes(resposta.nofetes))  
-                console.log(resposta)              
+                dispatch(setNoFetes(resposta.nofetes))                            
             }
         } catch {
             console.log('Error al fetchFites')
         }
     }
 }
+

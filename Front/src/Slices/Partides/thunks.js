@@ -6,8 +6,8 @@ export const getPartides = (authToken) => {
     const state = getState();
     const filter = state.partida.filter;
     console.log(filter);
-
-    let url = "http://equip06.insjoaquimmir.cat/api/partidas";
+    
+    let url = "http://equip06.insjoaquimmir.cat/api/partidas";   
 
     let poblacio = filter.poblacio !== "" ? "?poblacio=" + filter.poblacio : "";
 

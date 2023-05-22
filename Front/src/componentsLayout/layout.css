@@ -69,18 +69,33 @@
 }
 
   /*Boto de back*/
-.backButton{      
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;  
-    align-items: center;
+.backButton{   
     
-    bottom: 0; 
-    width: 100%;
+    display: none;
   }
 
-  .bbuttn{
-    display: none;
+  .bbuttn{    
     color: blue;
     border: none;
+  }
+
+  @media (max-width: 768px) {
+     
+    .backButton{
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menuheader{
+        
+    }
+    .logout{
+        display: none;
+    }
   }

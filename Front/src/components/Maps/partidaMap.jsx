@@ -144,7 +144,6 @@ function PartidaMap() {
 
 
   const getLocationOnClick = () => {
-        
     let isInRange = false;
 
     if ('geolocation' in navigator) {
@@ -153,7 +152,7 @@ function PartidaMap() {
           const { latitude, longitude } = position.coords;
           const userLocation = { latitude, longitude };          
           setUserLocation(userLocation);
-          
+                    
           // Compare user location with each object in nofetes
           nofetes.forEach((nofete) => {
             const nofeteLocation = {
@@ -169,8 +168,7 @@ function PartidaMap() {
               let fitaId = nofete.id;
               dispatch(fitaFeta(authToken, jugadorId, fitaId , equipId));
               dispatch(getFites(authToken, jugadorId, partidaId ));
-              notifySuccess('Has completat una fita enhorabona!');    
-              console.log(noFetes)
+              notifySuccess('Has completat una fita enhorabona!');                
             }
           });
           if (!isInRange) {
