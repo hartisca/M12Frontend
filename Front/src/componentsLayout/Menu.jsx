@@ -6,6 +6,7 @@ import { HiLocationMarker } from 'react-icons/hi'
 import { BsPerson, BsFillDice5Fill, BsDeviceSsd } from 'react-icons/bs'
 import { IoMdSettings } from 'react-icons/io'
 import { RiLogoutBoxLine } from 'react-icons/ri'
+import {FaHome} from 'react-icons/fa'
 
 import './layout.css'
 import { selectResponseId } from '../Slices/Jugador/jugadorSlice';
@@ -44,11 +45,7 @@ export const Menu = () => {
 
   return (
     <>
-      <div className="menuheader">
-        {/*
-        <div className='logo'>
-          <img src="" alt="" />
-        </div> */}
+      <div className="menuheader">       
         <nav>
           <ul className='nav-links'>
             <li><Link to ={"/"}>Home</Link></li>
@@ -62,6 +59,17 @@ export const Menu = () => {
             }}> <RiLogoutBoxLine /> Logout
         </button>    
       </div>         
+      <div className="menuheaderMvl">       
+        <nav>
+          <ul className='nav-links'>
+            <li className='iconos'><Link to ={"/"}><FaHome /></Link></li>
+            <li className='iconos'><Link to ={"/mapa/" + mapaId}><HiLocationMarker /></Link></li>
+            <li className='iconos'><Link to ={"/jugadors/" + jugadorId}><BsPerson /></Link></li>
+            <li className='iconos'><Link to ={"/partidas/" + partidaId}><BsFillDice5Fill /></Link></li>   
+            <li className='iconos'><Link to="#" onClick={sendLogout}><RiLogoutBoxLine /></Link></li>   
+          </ul>
+        </nav>              
+      </div>    
     </>
   );  
 }

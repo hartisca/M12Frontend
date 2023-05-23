@@ -91,7 +91,7 @@ const EquipList = ({equip}) => {
             <td>
                 <button className={authToken ? "button-auth" : "button-noauth"} ref={buttonRef} onClick={unirseEquip}> Unir-me </button>
             </td>
-            <ToastContainer /> {/* Agrega esta línea */}
+            <ToastContainer /> 
         </>
         
     )

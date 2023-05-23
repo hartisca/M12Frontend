@@ -23,7 +23,7 @@ import { fitaFeta } from '../../Slices/Fites/thunks';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GiMineExplosion } from 'react-icons/gi';
+import { GiMineExplosion, GiCompass } from 'react-icons/gi';
 import { FaRegFrownOpen } from 'react-icons/fa'
 
 function PartidaMap() {
@@ -75,8 +75,7 @@ function PartidaMap() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "colored",
-      
+      theme: "colored",      
     });
   };
 
@@ -241,7 +240,8 @@ function PartidaMap() {
       </Map>       
     </div>
     <div className='localitza'>
-      <button onClick={getLocationOnClick}>Localitza'm</button>
+      <button className='locaOrd' onClick={getLocationOnClick}>Localitza'm</button>
+      <button className='locaMvl' onClick={getLocationOnClick}><GiCompass /></button>
       <ToastContainer />
     </div>    
     
