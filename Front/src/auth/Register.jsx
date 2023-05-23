@@ -49,7 +49,7 @@ export default function Register({setRegister}){
       if (resposta.success === true ){
         setAuthToken(resposta.authToken)
         localStorage.setItem("authToken",resposta.authToken);
-        navigate('/partidas')        
+        navigate('/')        
         console.log(resposta)
       }
     } catch{

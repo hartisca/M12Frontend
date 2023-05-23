@@ -16,7 +16,6 @@ import { PartidaShow } from './components/Partides/PartidaShow';
 import { EquipsList } from './components/Equips/EquipsList'
 import { Jugador }  from './components/Jugadors/Jugador';
 import Mapa from './components/Maps/partidaMap';
-import { PartidaMenu } from './components/Partides/PartidaMenu';
 import {Home} from './components/Home';
 import { JugadorsList } from './components/Jugadors/JugadorsList';
 
@@ -39,7 +38,7 @@ function App() {
         <Routes>
           <Route path="*" element={<> <NotFound /><MenuLogout /> </>} />
           <Route path="/" element={<> <Home /><MenuLogout /> </>} />
-          <Route path="/partidas" element={ <><PartidasList /><PartidaMenu /></>} />
+          <Route path="/partidas" element={ <><PartidasList /><MenuLogout /></>} />
           <Route path="/partidas/:id" element={ <> <PartidaShow /><Menu /> </> } /> 
           <Route path="/partidasJugador" element={ <> <JugadorsList /><Menu /> </> } /> 
           <Route path="/equips/list/:id" element={<><EquipsList /><MenuLogout /></>} />

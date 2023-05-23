@@ -26,7 +26,7 @@ const useLogin = () => {
 
           const resposta = await data.json();
           console.log(resposta)
-          if (resposta.success === true) {            
+          if (resposta.success === true) {      
             setAuthToken(myToken);                     
             setUserEmail(resposta.email);
             setUsuari(resposta.user.name);                            
@@ -52,7 +52,9 @@ const useLogin = () => {
             
           });
           const resposta = await data.json();          
-          if (resposta.success === true) {                  
+          if (resposta.success === true) {       
+            console.log(resposta)      
+
             setAuthToken(resposta.authToken)
             localStorage.setItem("authToken",resposta.authToken);
                                   

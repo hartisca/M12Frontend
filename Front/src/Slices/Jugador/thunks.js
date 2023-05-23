@@ -1,6 +1,7 @@
 import { setJugador, errors, saveResponseId, setJugadors } from "./jugadorSlice";
 import { saveResponseEquipId } from "../Equips/equipSlice";
 
+
 export const getJugador = ( authToken, id ) => {   
 
     return async (dispatch) => {

@@ -5,6 +5,7 @@ export const authSlice = createSlice({
     initialState: { 
         token: null,
         usuari: {
+            nom: "",
             file: { filepath: ""},
             email: "",
         }
