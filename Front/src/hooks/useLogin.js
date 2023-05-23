@@ -15,7 +15,7 @@ const useLogin = () => {
       let myToken =localStorage.getItem("authToken") || ""
         
         if(myToken.length > 0){
-          const data = await fetch("http://127.0.0.1:8000/api/user", {
+          const data = await fetch("http://equip06.insjoaquimmir.cat/api/user", {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
@@ -26,10 +26,10 @@ const useLogin = () => {
 
           const resposta = await data.json();
           console.log(resposta)
-          if (resposta.success === true) {            
-            setAuthToken(myToken);           
+          if (resposta.success === true) {      
+            setAuthToken(myToken);                     
             setUserEmail(resposta.email);
-            setUsuari(resposta.usuari);                     
+            setUsuari(resposta.user.name);                            
           }
         }
         else{
@@ -42,7 +42,7 @@ const useLogin = () => {
         const { email,password} = data
         try {
           
-          const data = await fetch("http://127.0.0.1:8000/api/login", {
+          const data = await fetch("http://equip06.insjoaquimmir.cat/api/login", {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json"
@@ -52,12 +52,12 @@ const useLogin = () => {
             
           });
           const resposta = await data.json();          
-          if (resposta.success === true) {          
+          if (resposta.success === true) {       
+            console.log(resposta)      
+
             setAuthToken(resposta.authToken)
             localStorage.setItem("authToken",resposta.authToken);
-            setUser(resposta.usuari);
-            setUserEmail(resposta.email);
-                       
+                                  
           }else {
             setError(resposta.message)
           }

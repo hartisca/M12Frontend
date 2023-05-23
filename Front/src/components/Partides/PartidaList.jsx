@@ -14,7 +14,7 @@ const PartidaList = ({partida}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate(); 
     
-    
+       
 
     function unirsePartida() {        
         dispatch(getPartida(authToken, partida.id ));
@@ -23,20 +23,21 @@ const PartidaList = ({partida}) => {
     }
 
     useEffect(() => {
-        
+                
     }, [unirsePartida]);
-    
-   
+     
 
     return(
-        <>
+        
+        <>       
             <td>{partida.nom}</td>
+            <td>{partida.poblacio}</td>
             <td>{partida.puntsVictoria}</td>
             <td>{partida.duracio}</td>           
             <td>
                 <button className={authToken ? "button-auth" : "button-noauth"} onClick={unirsePartida} disabled={!authToken}>Apuntarme</button>
-            </td>
-                    
+            </td>     
+                  
         </>
         
     )

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const partidaSlice = createSlice({
  name: 'partida',
  initialState: { 
-    partides: [],
+    partides: [],    
     partida: {
         nom: "",
         puntsvictoria: "",
@@ -12,9 +12,10 @@ export const partidaSlice = createSlice({
     },
     isLoading: true,
     missatge: "",
-    page: 0,
+    filter: { poblacio: "" },
     errors: "",
     partidaId: null,
+    mapaId: null,
     
  }, 
  reducers: {
@@ -31,14 +32,22 @@ export const partidaSlice = createSlice({
     },
     setPartidaId: (state, action) => {
         state.partidaId = action.payload;
-    }
-    
+    },
+    setMapaId: (state, action) => {
+        state.mapaId = action.payload;
+    },
+    setFilter: (state,action) => {
+        state.filter = action.payload
+    },
+       
  }
 })
 
 export const selectResponseIdPartida = state => state.partida.partidaId;
 
+export const selectMapaIdPartida = state => state.partida.mapaId;
+
 // Action creators are generated for each case reducer function
-export const { setPartides, setPartida, startLoadingPartides, errors, missatge, setPartidaId } = partidaSlice.actions
+export const { setPartides, setPartida, startLoadingPartides, errors, missatge, setPartidaId, setMapaId, setFilter } = partidaSlice.actions
 
 export const partidaReducer = partidaSlice.reducer

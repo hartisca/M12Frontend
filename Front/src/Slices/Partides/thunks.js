@@ -1,37 +1,47 @@
-import {setPartides, setPartida, startLoadingPartides, errors, setPartidaId} from './partidaSlice'
+import { setPartides, setPartida, startLoadingPartides, errors, setPartidaId, setMapaId } from './partidaSlice'
 
 export const getPartides = (authToken) => {
+  return async (dispatch, getState) => {
+    dispatch(startLoadingPartides());
+    const state = getState();
+    const filter = state.partida.filter;
+    console.log(filter);
+    
+    let url = "http://equip06.insjoaquimmir.cat/api/partidas";   
 
-    return async (dispatch) => {
-        dispatch(startLoadingPartides());
-        try{
-            const data = await fetch ('http://127.0.0.1:8000/api/partidas', {
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + authToken,
+    let poblacio = filter.poblacio !== "" ? "?poblacio=" + filter.poblacio : "";
 
-              },
-              method: "GET",
-            });
-            const resposta = await data.json();
-            if (resposta){
-                dispatch(setPartides(resposta));                                
-            }else{
-                console.log('partides buides')
-            }
-          } catch{
-            console.log('Error en el listado:', errors);
-          }
+    url = url + poblacio;
+    console.log(url);
+    try {
+      const data = await fetch(url, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + authToken,
+        },
+        method: "GET",
+      });
+      const resposta = await data.json();
+      if (resposta) {
+        console.log(resposta)
+        dispatch(setPartides(resposta.data));
+      } else {
+        console.log("partides buides");
+      }
+    } catch {
+      console.log("Error en el listado:", errors);
     }
-}
+  };
+};
+
 
 export const getPartida = (authToken, id ) => {
 
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     dispatch(startLoadingPartides());
 
-    const data = await fetch('http://127.0.0.1:8000/api/partidas/' + id, {
+    const data = await fetch('http://equip06.insjoaquimmir.cat/api/partidas/' + id, {
 
       headers: {
         Accept: "application/json",
@@ -44,7 +54,8 @@ export const getPartida = (authToken, id ) => {
     
     if (resposta.success === true){
       dispatch(setPartida(resposta.data))  
-      dispatch(setPartidaId(resposta.data.id))    
+      dispatch(setPartidaId(resposta.data.id))  
+      dispatch(setMapaId(resposta.data.mapa_id))       
     }else{
       console.log('Error en la partida:',errors);
     }

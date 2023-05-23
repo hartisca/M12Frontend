@@ -1,19 +1,19 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserContext } from '../../UserContext';
 import { getJugador } from '../../Slices/Jugador/thunks';
 import { useParams } from 'react-router-dom';
 
+
 import '../components.css'
 
 export const Jugador = () => {
   
-  let {authToken,setAuthToken,usuari, setUsuari} = useContext(UserContext)    
+  const { authToken, setAuthToken, usuari, setUsuari } = useContext(UserContext);  
 
-  const jugador = useSelector((state) => state.jugador.jugador);
+  const jugador = useSelector((state) => state.jugador.jugador);  
   const dispatch = useDispatch();
-  const { id } = useParams();
-
+  const { id } = useParams();  
   
   useEffect(() => {    
     dispatch(getJugador(authToken, id));
@@ -22,10 +22,7 @@ export const Jugador = () => {
   return (
     
     <div className='wrapper'>
-      <div className='left'>
-        <img src={jugador.img} alt="userImage" width="100"></img>
-        <p>Nom: </p>
-        <button>Info</button>
+      <div className='left'>       
       </div>
       <div className='right'>
         <div className='jugadorInfo'>
@@ -35,7 +32,8 @@ export const Jugador = () => {
           <p>Equip ID: {jugador.equip_id}</p>
         </div>
       </div>
-    </div>
+      
+    </div>   
     
   );
 };

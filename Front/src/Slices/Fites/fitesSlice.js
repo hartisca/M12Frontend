@@ -8,6 +8,7 @@ export const fitesSlice = createSlice({
     fita: {
         lat: 0,
         long: 0,
+        
     },
     isLoading: true,
     missatge: "",

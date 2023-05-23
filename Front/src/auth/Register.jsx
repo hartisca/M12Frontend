@@ -37,7 +37,7 @@ export default function Register({setRegister}){
     const {name, email, password} = data
 
     try{
-      const fetchResponse = await fetch ('http://127.0.0.1:8000/api/register', {
+      const fetchResponse = await fetch ('http://equip06.insjoaquimmir.cat/api/register', {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json"
@@ -49,7 +49,7 @@ export default function Register({setRegister}){
       if (resposta.success === true ){
         setAuthToken(resposta.authToken)
         localStorage.setItem("authToken",resposta.authToken);
-        navigate('/partidas')       
+        navigate('/')        
         console.log(resposta)
       }
     } catch{

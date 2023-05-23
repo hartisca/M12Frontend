@@ -11,6 +11,7 @@ export const equipSlice = createSlice({
     isLoading: true,
     missatge: "",    
     errors: "",
+    equipId: null,
  }, 
  reducers: {
     setEquips: (state, action) => {
@@ -25,11 +26,16 @@ export const equipSlice = createSlice({
     startLoadingEquips: (state) => {
         state.isLoading = true;
     },
+    saveResponseEquipId: (state, action) => {
+      state.equipId = action.payload;
+    }
 
  },
 })
 
+export const selectResponseEquipId = state => state.equip.equipId;
+
 // Action creators are generated for each case reducer function
-export const { setEquips, setEquip, errors, startLoadingEquips } = equipSlice.actions
+export const { setEquips, setEquip, errors, startLoadingEquips, saveResponseEquipId } = equipSlice.actions
 
 export const equipReducer = equipSlice.reducer

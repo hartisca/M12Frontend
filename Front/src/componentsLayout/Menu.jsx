@@ -6,24 +6,26 @@ import { HiLocationMarker } from 'react-icons/hi'
 import { BsPerson, BsFillDice5Fill, BsDeviceSsd } from 'react-icons/bs'
 import { IoMdSettings } from 'react-icons/io'
 import { RiLogoutBoxLine } from 'react-icons/ri'
+import {FaHome} from 'react-icons/fa'
 
 import './layout.css'
 import { selectResponseId } from '../Slices/Jugador/jugadorSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { selectResponseIdPartida } from '../Slices/Partides/partidaSlice';
+import { selectMapaIdPartida } from '../Slices/Partides/partidaSlice';
 
 export const Menu = () => {
   
   let { authToken, setAuthToken } = useContext(UserContext);
   const jugadorId = useSelector(selectResponseId);
   const partidaId = useSelector(selectResponseIdPartida);
+  const mapaId = useSelector(selectMapaIdPartida);
 
-  
 
   const sendLogout = async (e) => {
     e.preventDefault();
     try{
-        const data = await fetch("http://127.0.0.1:8000/api/logout", {
+        const data = await fetch("http://equip06.insjoaquimmir.cat/api/logout", {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
@@ -43,24 +45,31 @@ export const Menu = () => {
 
   return (
     <>
-      <div className="menuheader">
-        {/*
-        <div className='logo'>
-          <img src="" alt="" />
-        </div> */}
+      <div className="menuheader">       
         <nav>
           <ul className='nav-links'>
-            <li><Link to ="/mapa">Mapa</Link></li>
+            <li><Link to ={"/"}>Home</Link></li>
+            <li><Link to ={"/mapa/" + mapaId}>Mapa</Link></li>
             <li><Link to ={"/jugadors/" + jugadorId}>Jugador</Link></li>
             <li><Link to ={"/partidas/" + partidaId}>Info Partida</Link></li>                     
           </ul>
-        </nav>
-              
+        </nav>              
         <button className="logout justify-content-end" onClick={(e) => {
           sendLogout(e);
             }}> <RiLogoutBoxLine /> Logout
         </button>    
       </div>         
+      <div className="menuheaderMvl">       
+        <nav>
+          <ul className='nav-links'>
+            <li className='iconos'><Link to ={"/"}><FaHome /></Link></li>
+            <li className='iconos'><Link to ={"/mapa/" + mapaId}><HiLocationMarker /></Link></li>
+            <li className='iconos'><Link to ={"/jugadors/" + jugadorId}><BsPerson /></Link></li>
+            <li className='iconos'><Link to ={"/partidas/" + partidaId}><BsFillDice5Fill /></Link></li>   
+            <li className='iconos'><Link to="#" onClick={sendLogout}><RiLogoutBoxLine /></Link></li>   
+          </ul>
+        </nav>              
+      </div>    
     </>
   );  
 }

@@ -9,20 +9,17 @@ import { useParams } from 'react-router-dom';
 import RotateLoader from "react-spinners/ClipLoader";
 import '../components.css'
 
+
 export const EquipsList = () => {
 
   let { authToken, setAuthToken,usuari, setUsuari } = useContext(UserContext);
 
-  const partidaId = useSelector((state)=>state.partida.partidaId)
   const { equips = []} = useSelector((state) => state.equip);
   const dispatch = useDispatch();
   const {id} = useParams();
 
-  useEffect(() => {    
-    
-    console.log(partidaId)
-    dispatch(getEquips(authToken, id));    
-    console.log(id);
+  useEffect(() => {
+    dispatch(getEquips(authToken, id));
   }, []);
 
   return (    

@@ -33,6 +33,10 @@
     margin-top: 2%;  
 }
 
+.menuheaderMvl{
+    display: none;
+}
+
 .menuheader .nav-links{
     list-style: none;
     font-weight: 600;
@@ -60,9 +64,7 @@
     border: none;
     background-color: transparent;
     color: black;
-    font-weight: 600;
-    
-    
+    font-weight: 600;    
 }
 
 .logout:hover{
@@ -70,21 +72,73 @@
     font-size: 1.1em;
 }
 
-
   /*Boto de back*/
-.backButton{  
+.backButton{   
     
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;  
-    align-items: center;
-    
-    bottom: 0; 
-    width: 100%;
+    display: none;
   }
 
-  .bbuttn{
-    display: none;
+  .bbuttn{    
     color: blue;
     border: none;
   }
+
+  @media (max-width: 430px) {
+     
+    .backButton{
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menuheader{
+        display: none;
+    }
+    
+    .menuheaderMvl{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 10px;
+        
+        background-color: rgba(255, 255, 255, 0.5);
+        width: 100vw;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin-top: 2%;
+        
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100vw;
+        list-style: none;
+        
+      }
+
+      .iconos {
+        flex: 1;
+        text-align: center;                
+      }
+
+      .iconos a {
+        display: block;
+        font-size: 24px; 
+        color: black;
+      }
+
+      .iconos a:hover{
+          color: #83F0C4;             
+      }
+
+     
+}
