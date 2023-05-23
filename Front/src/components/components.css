@@ -78,7 +78,7 @@ tbody tr:nth-child(even){
   width: 350px;
   display: flex;
   
-  background-color: rgba(255, 255, 255, 0.425);
+  background-color: rgba(255, 255, 255, 0.61);
   box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
@@ -157,11 +157,10 @@ tbody tr:nth-child(even){
 
   .containerHome{
     text-align: center;
-    padding: 25px;
+    padding: 30px;
     background-color: rgba(255, 255, 255, 0.678);
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
+    border-radius: 10px;
     color: black;
   }
 
@@ -211,6 +210,14 @@ tbody tr:nth-child(even){
     padding: 5px;
     margin: 2px;
     
+  }
+
+  .equipo-max-puntuacion {
+    color: green;
+  }
+  
+  .equipo-otra-puntuacion {
+    color: red;
   }
 
 

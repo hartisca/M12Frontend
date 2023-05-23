@@ -27,11 +27,11 @@ export const PuntuacionsList = () => {
           <td>Puntuació</td>
         </thead>
         <tbody>
-          {equips.map((equip) => (
-              <tr key={equip.id}>
-                  <PuntuacioList equip={equip} />
-              </tr>
-            ))}
+        {equips.map((equip) => (
+          <tr key={equip.id}>
+            <PuntuacioList equip={equip} equips={equips} />
+          </tr>
+        ))}
         </tbody>       
       </table>
     </>
